@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiskos — a private, offline-first space for your people</title>
+<meta name="description" content="Chat, share photos and files, plan together and split expenses — with your people. Works with zero internet or signal. No account, no servers, end-to-end encrypted.">
+<meta property="og:title" content="Fiskos — chat & share with your people, offline">
+<meta property="og:description" content="Works with zero internet or signal. No account, no servers, end-to-end encrypted.">
+<meta property="og:image" content="og.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF6EE; --surface:#FFFFFF; --sand:#F1E9DB; --text:#4A4036; --muted:#7A7268;
+    --accent:#D9663A; --accent2:#E8915A; --line:rgba(58,46,30,.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--text);
+    font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif; line-height:1.6}
+  .wrap{max-width:960px; margin:0 auto; padding:0 22px}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* hero */
+  .hero{text-align:center; padding:72px 22px 36px}
+  .hero img.icon{width:96px; height:96px; border-radius:24px; box-shadow:0 6px 24px rgba(58,46,30,.16)}
+  .hero h1{font-family:'Fraunces',serif; font-weight:700; font-size:54px; line-height:1.05; margin:22px 0 6px}
+  .hero .tag{font-size:21px; color:var(--text); margin:0 auto; max-width:620px}
+  .hero .sub{font-size:16px; color:var(--muted); margin:14px auto 0; max-width:560px}
+  .badges{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px}
+  .btn{display:inline-flex; align-items:center; gap:9px; background:var(--accent); color:#fff;
+    padding:13px 20px; border-radius:14px; font-weight:700; font-size:15px}
+  .btn.soft{background:var(--sand); color:var(--text)}
+  .btn:hover{text-decoration:none; filter:brightness(1.04)}
+
+  /* wedge banner */
+  .wedge{background:linear-gradient(120deg,var(--accent),var(--accent2)); color:#fff;
+    border-radius:22px; padding:34px 28px; margin:30px 0; text-align:center}
+  .wedge h2{font-family:'Fraunces',serif; font-weight:700; font-size:30px; margin:0 0 8px}
+  .wedge p{font-size:17px; margin:0 auto; max-width:640px; opacity:.96}
+
+  /* features */
+  section.block{padding:30px 0}
+  h2.section{font-family:'Fraunces',serif; font-weight:600; font-size:28px; text-align:center; margin:8px 0 22px}
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:20px}
+  .card .emoji{font-size:26px}
+  .card h3{font-family:'Fraunces',serif; font-weight:600; font-size:18px; margin:10px 0 5px}
+  .card p{margin:0; color:var(--muted); font-size:15px}
+
+  /* how it works */
+  .how{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:28px}
+  .how h2{font-family:'Fraunces',serif; font-weight:600; font-size:24px; margin:0 0 14px; text-align:center}
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  .step .n{width:30px; height:30px; border-radius:50%; background:var(--accent); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:15px; margin-bottom:8px}
+  .step p{margin:0; font-size:15px; color:var(--text)}
+  .step b{color:var(--text)}
+
+  footer{border-top:1px solid var(--line); margin-top:40px; padding:28px 0 60px; text-align:center; color:var(--muted); font-size:14px}
+  footer .links{margin-bottom:8px}
+  footer .links a{margin:0 8px}
+
+  @media (max-width:720px){
+    .hero h1{font-size:42px}
+    .grid,.steps{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+  <header class="hero">
+    <img class="icon" src="icon.png" alt="Fiskos">
+    <h1>Fiskos</h1>
+    <p class="tag">A private, offline-first space for your people.</p>
+    <p class="sub">Chat, share photos &amp; files, make plans, split expenses, and call each other — even with <strong>zero internet or signal</strong>. No account. No servers. End-to-end encrypted.</p>
+    <div class="badges">
+      <span class="btn">Coming soon to Google Play</span>
+      <a class="btn soft" href="#how">How the offline part works ↓</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <div class="wedge">
+      <h2>No Wi-Fi? No signal? It still works.</h2>
+      <p>Underground gym, a plane, a campsite, a power cut, a country with no roaming — Fiskos connects your phones <strong>directly</strong> over your local network or a hotspot, so you stay together when everything else needs the internet and doesn't have it.</p>
+    </div>
+
+    <section class="block">
+      <h2 class="section">Everything in one private space</h2>
+      <div class="grid">
+        <div class="card"><div class="emoji">💬</div><h3>Chat &amp; calls</h3><p>1:1 and group messages, voice messages, and voice/video calls — direct, encrypted, no phone number.</p></div>
+        <div class="card"><div class="emoji">📷</div><h3>Share anything</h3><p>Photos, videos, files and voice notes fly between phones over the local network — fast, no upload to anyone's cloud.</p></div>
+        <div class="card"><div class="emoji">🗓️</div><h3>Plan together</h3><p>A shared calendar with RSVPs and reminders, plus shared notes and checklists for trips and to-dos.</p></div>
+        <div class="card"><div class="emoji">🧾</div><h3>Split expenses</h3><p>Track who paid, split fairly (even just some people), in any currency — perfect for trips and roommates.</p></div>
+        <div class="card"><div class="emoji">📍</div><h3>Find each other</h3><p>Share live location and a "find each other" radar with the people you choose — sent only to them.</p></div>
+        <div class="card"><div class="emoji">🔒</div><h3>Private by design</h3><p>No account, no tracking, no servers. Everything is end-to-end encrypted and stored only on your devices.</p></div>
+      </div>
+    </section>
+
+    <section class="block" id="how">
+      <div class="how">
+        <h2>How the no-internet part works</h2>
+        <div class="steps">
+          <div class="step"><div class="n">1</div><p><b>Pair once.</b> Scan a QR code or tap phones together and confirm a safety emoji. Done — you're connected.</p></div>
+          <div class="step"><div class="n">2</div><p><b>Connect directly.</b> On the same Wi-Fi or a hotspot, your phones find each other and talk peer-to-peer — no server in the middle.</p></div>
+          <div class="step"><div class="n">3</div><p><b>Stay in sync.</b> Messages and shared plans merge automatically when you reconnect, so nothing is lost offline.</p></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="links">
+      <a href="https://alisarac.github.io/fiskos-legal/">Privacy Policy</a> ·
+      <a href="mailto:alisarac@gmail.com">Contact</a>
+    </div>
+    © 2026 Fiskos · No servers · No accounts · No tracking
+  </footer>
+
+</body>
+</html>
