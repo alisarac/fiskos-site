@@ -10,6 +10,9 @@
 <meta property="og:image" content="og.png">
 <meta property="og:type" content="website">
 <link rel="icon" href="icon.png">
+<link rel="alternate" hreflang="en" href="https://alisarac.github.io/fiskos-site/">
+<link rel="alternate" hreflang="tr" href="https://alisarac.github.io/fiskos-site/tr.html">
+<link rel="alternate" hreflang="x-default" href="https://alisarac.github.io/fiskos-site/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -90,6 +93,9 @@
   footer .links{margin-bottom:8px}
   footer .links a{margin:0 8px}
 
+  .langnav{max-width:960px; margin:0 auto; padding:14px 22px 0; text-align:right; font-size:14px; font-weight:700}
+  .langnav a{color:var(--muted)} .langnav a.on{color:var(--accent)}
+
   @media (max-width:720px){
     .hero h1{font-size:42px}
     .grid,.steps,.plist{grid-template-columns:1fr}
@@ -98,6 +104,8 @@
 </style>
 </head>
 <body>
+
+  <nav class="langnav"><a class="on">EN</a> · <a href="tr.html">TR</a></nav>
 
   <header class="hero">
     <img class="icon" src="icon.png" alt="Fiskos">

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiskos — sevdiklerin için özel, internetsiz bir alan</title>
+<meta name="description" content="Sohbet et, ara, fotoğraf ve dosya paylaş, birlikte plan yap, masraf paylaş, hatta oyun oyna — sevdiklerinle. Sıfır internet ya da sinyalle çalışır. Hesap yok, sunucu yok, uçtan uca şifreli.">
+<meta property="og:title" content="Fiskos — sevdiklerinle internetsiz sohbet, paylaşım ve oyun">
+<meta property="og:description" content="Sıfır internet ya da sinyalle çalışır. Hesap yok, sunucu yok, uçtan uca şifreli.">
+<meta property="og:image" content="og.png">
+<meta property="og:type" content="website">
+<link rel="icon" href="icon.png">
+<link rel="alternate" hreflang="en" href="https://alisarac.github.io/fiskos-site/">
+<link rel="alternate" hreflang="tr" href="https://alisarac.github.io/fiskos-site/tr.html">
+<link rel="alternate" hreflang="x-default" href="https://alisarac.github.io/fiskos-site/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF6EE; --surface:#FFFFFF; --sand:#F1E9DB; --text:#4A4036; --muted:#7A7268;
+    --accent:#D9663A; --accent2:#E8915A; --line:rgba(58,46,30,.10); --success:#2F9E6B;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--text);
+    font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif; line-height:1.6}
+  .wrap{max-width:960px; margin:0 auto; padding:0 22px}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .hero{text-align:center; padding:72px 22px 30px}
+  .hero img.icon{width:96px; height:96px; border-radius:24px; box-shadow:0 6px 24px rgba(58,46,30,.16)}
+  .hero h1{font-family:'Fraunces',serif; font-weight:700; font-size:54px; line-height:1.05; margin:22px 0 6px}
+  .hero .tag{font-size:21px; color:var(--text); margin:0 auto; max-width:620px}
+  .hero .sub{font-size:16px; color:var(--muted); margin:14px auto 0; max-width:600px}
+  .badges{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px}
+  .btn{display:inline-flex; align-items:center; gap:9px; background:var(--accent); color:#fff;
+    padding:13px 20px; border-radius:14px; font-weight:700; font-size:15px}
+  .btn.soft{background:var(--sand); color:var(--text)}
+  .btn:hover{text-decoration:none; filter:brightness(1.04)}
+
+  .wedge{background:linear-gradient(120deg,var(--accent),var(--accent2)); color:#fff;
+    border-radius:22px; padding:34px 28px; margin:30px 0; text-align:center}
+  .wedge h2{font-family:'Fraunces',serif; font-weight:700; font-size:30px; margin:0 0 8px}
+  .wedge p{font-size:17px; margin:0 auto; max-width:660px; opacity:.96}
+
+  section.block{padding:30px 0}
+  h2.section{font-family:'Fraunces',serif; font-weight:600; font-size:28px; text-align:center; margin:8px 0 6px}
+  p.section-sub{text-align:center; color:var(--muted); margin:0 auto 22px; max-width:640px}
+  .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+  .card{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:20px}
+  .card .emoji{font-size:26px}
+  .card h3{font-family:'Fraunces',serif; font-weight:600; font-size:18px; margin:10px 0 5px}
+  .card p{margin:0; color:var(--muted); font-size:15px}
+
+  .privacy{background:var(--text); color:#F3ECE1; border-radius:22px; padding:30px 28px; margin:12px 0}
+  .privacy h2{font-family:'Fraunces',serif; font-weight:700; font-size:26px; margin:0 0 6px; color:#fff; text-align:center}
+  .privacy .lead{text-align:center; color:#D8CDBD; margin:0 auto 20px; max-width:620px}
+  .plist{display:grid; grid-template-columns:repeat(2,1fr); gap:12px 24px}
+  .pitem{display:flex; gap:11px; align-items:flex-start}
+  .pitem .dot{color:var(--accent2); font-weight:800; line-height:1.5}
+  .pitem b{color:#fff}
+  .pitem span{color:#D8CDBD; font-size:14.5px}
+
+  .how{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:28px}
+  .how h2{font-family:'Fraunces',serif; font-weight:600; font-size:24px; margin:0 0 14px; text-align:center}
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
+  .step .n{width:30px; height:30px; border-radius:50%; background:var(--accent); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:15px; margin-bottom:8px}
+  .step p{margin:0; font-size:15px; color:var(--text)}
+  .step b{color:var(--text)}
+
+  .chips{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:6px}
+  .chip{background:var(--surface); border:1px solid var(--line); border-radius:999px;
+    padding:9px 15px; font-size:14.5px; font-weight:600}
+
+  .pro{display:flex; gap:16px; align-items:flex-start; background:var(--sand);
+    border:1px solid var(--line); border-radius:22px; padding:26px 26px}
+  .pro .badge{font-size:30px}
+  .pro h3{font-family:'Fraunces',serif; font-weight:700; font-size:22px; margin:0 0 6px}
+  .pro p{margin:0; color:var(--muted); font-size:15.5px}
+
+  footer{border-top:1px solid var(--line); margin-top:40px; padding:28px 0 60px; text-align:center; color:var(--muted); font-size:14px}
+  footer .links{margin-bottom:8px}
+  footer .links a{margin:0 8px}
+
+  .langnav{max-width:960px; margin:0 auto; padding:14px 22px 0; text-align:right; font-size:14px; font-weight:700}
+  .langnav a{color:var(--muted)} .langnav a.on{color:var(--accent)}
+
+  @media (max-width:720px){
+    .hero h1{font-size:42px}
+    .grid,.steps,.plist{grid-template-columns:1fr}
+    .pro{flex-direction:column}
+  }
+</style>
+</head>
+<body>
+
+  <nav class="langnav"><a href="index.html">EN</a> · <a class="on">TR</a></nav>
+
+  <header class="hero">
+    <img class="icon" src="icon.png" alt="Fiskos">
+    <h1>Fiskos</h1>
+    <p class="tag">Sevdiklerin için özel, internetsiz bir alan.</p>
+    <p class="sub">Sohbet et, ara, fotoğraf ve dosya paylaş, plan yap, masraf paylaş — hatta birlikte oyun oyna — üstelik <strong>sıfır internet ya da sinyalle</strong>. Hesap yok. Sunucu yok. Uçtan uca şifreli.</p>
+    <div class="badges">
+      <a class="btn" href="https://play.google.com/store/apps/details?id=com.alisrc.fiskos" target="_blank" rel="noopener">▶ Google Play'den indir</a>
+      <a class="btn soft" href="#how">İnternetsiz kısmı nasıl çalışır ↓</a>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <div class="wedge">
+      <h2>Wi-Fi yok mu? Sinyal yok mu? Yine de çalışır.</h2>
+      <p>Bodrumdaki spor salonu, uçak, kamp alanı, elektrik kesintisi, roaming olmayan bir ülke — Fiskos telefonlarınızı yerel ağ, bir hotspot ya da router bile olmadan telefondan telefona (Wi-Fi Direct) <strong>doğrudan</strong> bağlar. Her şey internete muhtaçken ve internet yokken bile birlikte kalırsınız.</p>
+    </div>
+
+    <section class="block">
+      <h2 class="section">Hepsi tek bir özel alanda</h2>
+      <p class="section-sub">Sana en yakın insanlar için sakin bir yuva — gürültülü bir akış değil, yabancı yok, reklam yok.</p>
+      <div class="grid">
+        <div class="card"><div class="emoji">💬</div><h3>Sohbet &amp; aramalar</h3><p>Reaksiyon, yanıt ve sesli mesajla birebir ve grup sohbetleri — artı sesli ve görüntülü arama. Telefon numarası gerekmez.</p></div>
+        <div class="card"><div class="emoji">📷</div><h3>Her şeyi paylaş</h3><p>Fotoğraf, video, dosya ve sesli notlar yerel ağ üzerinden telefondan telefona uçar — hızlı ve asla kimsenin bulutuna yüklenmeden.</p></div>
+        <div class="card"><div class="emoji">🗓️</div><h3>Birlikte planla</h3><p>Yanıtlı (RSVP) ortak takvim, hatırlatmalar ve “Yaklaşan” ajandası; artı geziler ve yapılacaklar için ortak notlar ve listeler.</p></div>
+        <div class="card"><div class="emoji">🧾</div><h3>Masraf paylaş</h3><p>Kimin ödediğini takip et, adilce böl — sadece bazı kişiler arasında bile — istediğin para biriminde. Geziler ve ev arkadaşları için ideal.</p></div>
+        <div class="card"><div class="emoji">📍</div><h3>Birbirinizi bulun</h3><p>Seçtiğin kişilerle canlı konum ve “birbirini bul” radarı paylaş — sadece onlara gider.</p></div>
+        <div class="card"><div class="emoji">🎲</div><h3>Birlikte oyna</h3><p>Tavla, Satranç ve Kızma Birader — iki telefonunuzda karşılıklı, tamamen internetsiz oynayın.</p></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="privacy">
+        <h2>Tasarım gereği özel — söz verildiği için değil</h2>
+        <p class="lead">Çoğu uygulama sunucularına güvenmeni ister. Fiskos'un hiç sunucusu yok. Burada gizlilik bir ayar değil; uygulamanın temeli.</p>
+        <div class="plist">
+          <div class="pitem"><span class="dot">◆</span><span><b>Sunucu yok, hesap yok.</b> Telefon numarası yok, kayıt yok, takip yok. Verin yalnızca cihazlarında durur.</span></div>
+          <div class="pitem"><span class="dot">◆</span><span><b>Uçtan uca şifreli.</b> Mesajlarını yalnızca sen ve eşleştiğin kişiler okuyabilir — arada kimse yok, biz bile.</span></div>
+          <div class="pitem"><span class="dot">◆</span><span><b>Telefonunda şifreli.</b> Her şey, telefonunun güvenli donanımında tutulan bir anahtarla depolamada şifrelenir.</span></div>
+          <div class="pitem"><span class="dot">◆</span><span><b>Uygulama kilidi.</b> Fiskos'u açmak için parmak izi, yüz ya da PIN iste.</span></div>
+          <div class="pitem"><span class="dot">◆</span><span><b>Kaybolan mesajlar.</b> Herhangi bir sohbeti bir saat, bir gün ya da bir hafta sonra kendini silecek şekilde ayarla.</span></div>
+          <div class="pitem"><span class="dot">◆</span><span><b>Panik-silme &amp; doğrulanmış kişiler.</b> Gerekirse her şeyi anında sil; ve bir kişinin güvenlik numarasını doğrula ki kimse onun yerine geçemesin.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="how">
+      <div class="how">
+        <h2>İnternetsiz kısmı nasıl çalışır</h2>
+        <div class="steps">
+          <div class="step"><div class="n">1</div><p><b>Bir kez eşleş.</b> Bir QR tara ve güvenlik emojisini onayla — tamamen off-grid, Wi-Fi Direct üzerinden bile. Tamam, bağlandınız.</p></div>
+          <div class="step"><div class="n">2</div><p><b>Doğrudan bağlan.</b> Aynı Wi-Fi, bir hotspot ya da telefondan telefona; telefonlarınız birbirini bulur ve peer-to-peer konuşur — ortada sunucu yok.</p></div>
+          <div class="step"><div class="n">3</div><p><b>Senkron kal.</b> Yeniden bağlandığınızda mesajlar ve ortak planlar otomatik birleşir, böylece çevrimdışıyken hiçbir şey kaybolmaz.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="section">Birlikte olmak için yapıldı</h2>
+      <p class="section-sub">Birkaç kişinin bir arada olduğu ama sinyalin olmadığı her yer için.</p>
+      <div class="chips">
+        <span class="chip">💪 Spor ekipleri</span>
+        <span class="chip">✈️ Seyahat &amp; roaming'siz geziler</span>
+        <span class="chip">🏕️ Kamp &amp; festivaller</span>
+        <span class="chip">❤️ Çiftler</span>
+        <span class="chip">👨‍👩‍👧 Aile &amp; ev arkadaşları</span>
+        <span class="chip">💼 Küçük ekipler &amp; stantlar</span>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="section">Alanını asla kaybetme</h2>
+      <p class="section-sub">Telefon mu değiştiriyorsun ya da her şeyi kaybetmekten mi korkuyorsun? Bulut olmadan koruma altındasın.</p>
+      <div class="grid">
+        <div class="card"><div class="emoji">🔄</div><h3>Yeni telefona taşı</h3><p>Tüm Fiskos'unu — kimliğin, sohbetlerin, dosyaların ve eşleşmelerin — sohbetlerinin kullandığı aynı şifreli bağlantı üzerinden yeni telefonuna gönder.</p></div>
+        <div class="card"><div class="emoji">🛡️</div><h3>Şifreli yedek</h3><p>12 kelimelik bir kurtarma ifadesiyle korunan şifreli bir yedek dosyası oluştur. Asla buluta gitmez — kaybolan ya da bozulan bir telefonda geri yükle.</p></div>
+        <div class="card"><div class="emoji">🤝</div><h3>İnsanlarını getir</h3><p>Fiskos için yanında biri gerekir; bir link ya da QR ile arkadaş davet etmek kolaydır — sinyalsiz bir yere gitmeden önce herkesi kur.</p></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="pro">
+        <div class="badge">⭐</div>
+        <div>
+          <h3>Kullanımı ücretsiz — isteğe bağlı Fiskos Pro ile</h3>
+          <p>Yukarıdakilerin hepsi ücretsiz. Tek seferlik <b>Fiskos Pro</b>, büyük dosya ve tam boy video paylaşımını ve bir destekçi rozetini açar — ve çevreni desteklediği için, <b>biriniz alır, eşleştiğin herkes de yararlanır</b>. Abonelik yok, reklam yok, asla. Sadece bağımsız, gizlilik öncelikli bir uygulamayı ayakta tutar.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="links">
+      <a href="https://play.google.com/store/apps/details?id=com.alisrc.fiskos" target="_blank" rel="noopener">Google Play</a> ·
+      <a href="https://alisarac.github.io/fiskos-legal/">Gizlilik Politikası</a> ·
+      <a href="mailto:alisarac@gmail.com">İletişim</a>
+    </div>
+    © 2026 Fiskos · Sunucu yok · Hesap yok · Takip yok
+  </footer>
+
+</body>
+</html>
