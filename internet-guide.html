@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiskos over the internet — an advanced setup guide</title>
+<meta name="description" content="Fiskos is built for people who are together. If you want to use it with someone far away, you can bridge your phones with a free virtual-LAN tool (ZeroTier) so they behave as if on the same network. Advanced, optional — Fiskos stays serverless.">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF6EE; --surface:#FFFFFF; --sand:#F1E9DB; --text:#4A4036; --muted:#7A7268;
+    --accent:#D9663A; --accent2:#E8915A; --line:rgba(58,46,30,.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--text);
+    font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif; line-height:1.6}
+  .wrap{max-width:760px; margin:0 auto; padding:0 22px}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .top{padding:26px 0 6px; font-size:14px}
+  header.hero{text-align:center; padding:26px 22px 8px}
+  header .kicker{display:inline-block; background:var(--sand); color:var(--text); font-weight:700;
+    font-size:12px; letter-spacing:.4px; text-transform:uppercase; padding:5px 11px; border-radius:999px}
+  header h1{font-family:'Fraunces',serif; font-weight:700; font-size:38px; line-height:1.1; margin:16px 0 8px}
+  header p.lede{font-size:18px; color:var(--muted); margin:0 auto; max-width:620px}
+
+  .note{border-radius:16px; padding:16px 18px; margin:20px 0; font-size:15px}
+  .note.info{background:var(--sand); border:1px solid var(--line)}
+  .note.warn{background:#fff4ec; border:1px solid rgba(217,102,58,.30)}
+  .note b{color:var(--text)}
+
+  h2{font-family:'Fraunces',serif; font-weight:600; font-size:24px; margin:34px 0 6px}
+  h3{font-family:'Fraunces',serif; font-weight:600; font-size:18px; margin:22px 0 4px}
+  p{margin:8px 0}
+
+  ol.steps{list-style:none; counter-reset:s; padding:0; margin:18px 0}
+  ol.steps>li{position:relative; background:var(--surface); border:1px solid var(--line);
+    border-radius:16px; padding:16px 18px 16px 58px; margin:12px 0}
+  ol.steps>li::before{counter-increment:s; content:counter(s); position:absolute; left:16px; top:16px;
+    width:28px; height:28px; border-radius:50%; background:var(--accent); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px}
+  ol.steps>li b{color:var(--text)}
+  code{background:var(--sand); border:1px solid var(--line); border-radius:6px; padding:1px 6px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.92em}
+
+  ul.tidy{margin:8px 0; padding-left:20px}
+  ul.tidy li{margin:5px 0}
+
+  footer{border-top:1px solid var(--line); margin-top:44px; padding:26px 0 60px; text-align:center; color:var(--muted); font-size:14px}
+  footer .links a{margin:0 8px}
+
+  @media (max-width:720px){ header h1{font-size:30px} }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <div class="top"><a href="./">← Back to Fiskos</a></div>
+
+    <header class="hero">
+      <span class="kicker">Advanced · Optional</span>
+      <h1>Using Fiskos over the internet</h1>
+      <p class="lede">Fiskos is built for people who are <em>together</em>. But if you want to use it with someone far away, you can bridge your phones so they behave as if they're on the same Wi-Fi.</p>
+    </header>
+
+    <div class="note info">
+      <b>First, the honest bit.</b> Fiskos has no servers — it connects phones directly on the same
+      local network. That's the whole point, and it's what keeps it private. This guide doesn't change
+      that. Instead, you set up a free <b>virtual LAN</b> (a tool called <b>ZeroTier</b>) that makes two
+      phones on the internet look like they're on one network. Fiskos then works over it exactly as it
+      would at home. The virtual network is something <i>you</i> run — Fiskos still never sees your data.
+    </div>
+
+    <h2>What you'll need</h2>
+    <ul class="tidy">
+      <li>Two Android phones with Fiskos installed.</li>
+      <li>A free <a href="https://www.zerotier.com/" target="_blank" rel="noopener">ZeroTier</a> account (one person creates the network; the other just joins).</li>
+      <li>The ZeroTier app on both phones.</li>
+      <li>About 10 minutes, once.</li>
+    </ul>
+
+    <h2>Why ZeroTier</h2>
+    <p>It's the modern version of the old “virtual LAN” tools people used to play LAN games over the
+      internet. Two people join one <b>network</b> (by an ID), the network's owner approves each device,
+      and everyone gets a private address (like <code>10.147.20.5</code>) on a shared virtual network —
+      no shared account needed, and it looks like a normal home network to Fiskos.</p>
+
+    <h2>Set it up</h2>
+    <ol class="steps">
+      <li><b>Create a network.</b> One of you signs in at <a href="https://my.zerotier.com/" target="_blank" rel="noopener">my.zerotier.com</a>, clicks <b>Create A Network</b>, and copies its 16-character <b>Network ID</b>. Share that ID with the other person.</li>
+      <li><b>Install ZeroTier &amp; join.</b> Both phones install the <b>ZeroTier</b> app (Google Play), tap <b>＋</b>, paste the Network ID, and join. Allow the VPN permission it asks for.</li>
+      <li><b>Approve both phones.</b> Back on <a href="https://my.zerotier.com/" target="_blank" rel="noopener">my.zerotier.com</a>, open the network and tick the <b>Auth?</b> checkbox next to each device so it's allowed in.</li>
+      <li><b>Check the connection.</b> On each phone, the ZeroTier app should now show a <b>Managed IP</b> (something like <code>10.147.20.x</code>). That means the two phones can now reach each other over the internet.</li>
+      <li><b>Tell Fiskos your overlay address.</b> On <b>each</b> phone, open Fiskos → <b>Settings → Advanced → Connect over VPN</b>, and enter that phone's own ZeroTier Managed IP from the step above (e.g. <code>10.147.20.5</code>). Save — it should now show <b>On</b>.</li>
+      <li><b>Pair in Fiskos.</b> Now pair the way you normally would — one phone shows its QR, the other scans it, and you confirm the safety emoji.</li>
+      <li><b>You're connected.</b> That's it. Fiskos remembers the ZeroTier address and reconnects over it automatically from now on, even after you switch networks.</li>
+    </ol>
+
+    <div class="note warn">
+      <b>Not connecting?</b> Run through this:
+      <ul class="tidy">
+        <li>Both devices show <b>Auth ✓</b> and a Managed IP in the ZeroTier console/app?</li>
+        <li>ZeroTier is actually running on both (its VPN key icon is on)?</li>
+        <li>In Fiskos → Settings → Advanced → Connect over VPN, does each phone show <b>On</b> with its <em>own</em> ZeroTier IP entered (not the other phone's)?</li>
+        <li>Still stuck? Remove each other in Fiskos and pair again, now that the overlay address is set on both.</li>
+      </ul>
+    </div>
+
+    <h2>Good to know</h2>
+    <ul class="tidy">
+      <li><b>This needs internet</b> — obviously. Fiskos's real magic is working with <i>none</i>; this is just a bonus for staying in touch with someone far away.</li>
+      <li><b>Still end-to-end encrypted.</b> ZeroTier only moves the (already encrypted) traffic between your phones. Neither ZeroTier nor Fiskos can read your messages.</li>
+      <li><b>It's your network.</b> You run the ZeroTier network; you can remove devices any time. Fiskos stays serverless.</li>
+      <li><b>Battery:</b> keeping a VPN and Fiskos active in the background uses a little more power. Turn ZeroTier off when you don't need the remote link.</li>
+    </ul>
+
+  </div>
+
+  <footer>
+    <div class="links">
+      <a href="./">Home</a> ·
+      <a href="https://alisarac.github.io/fiskos-legal/">Privacy Policy</a> ·
+      <a href="mailto:alisarac@gmail.com">Contact</a>
+    </div>
+    © 2026 Fiskos · No servers · No accounts · No tracking
+  </footer>
+
+</body>
+</html>
