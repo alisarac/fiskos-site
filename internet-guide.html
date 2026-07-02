@@ -102,7 +102,7 @@
       <li><b>Approve both phones.</b> Back on <a href="https://my.zerotier.com/" target="_blank" rel="noopener">my.zerotier.com</a>, open the network and tick the <b>Auth?</b> checkbox next to each device so it's allowed in.</li>
       <li><b>Check the connection.</b> On each phone, the ZeroTier app should now show a <b>Managed IP</b> (something like <code>10.147.20.x</code>). That means the two phones can now reach each other over the internet.</li>
       <li><b>Tell Fiskos your overlay address.</b> On <b>each</b> phone, open Fiskos → <b>Settings → Advanced → Connect over VPN</b>, and enter that phone's own ZeroTier Managed IP from the step above (e.g. <code>10.147.20.5</code>). Save — it should now show <b>On</b>.</li>
-      <li><b>Pair in Fiskos.</b> Now pair the way you normally would — one phone shows its QR, the other scans it, and you confirm the safety emoji.</li>
+      <li><b>Pair in Fiskos — you don't need to be together.</b> Since you can't scan each other's QR from afar, use codes instead: on each phone open the pairing screen, tap <b>Copy my code</b>, and send that code to the other person (any messenger or email — just once). Then each of you taps <b>Enter a code instead</b>, pastes the other's code, and confirms the safety emoji. Your code already carries the overlay address you set above.</li>
       <li><b>You're connected.</b> That's it. Fiskos remembers the ZeroTier address and reconnects over it automatically from now on, even after you switch networks.</li>
     </ol>
 
