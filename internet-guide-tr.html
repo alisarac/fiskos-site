@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fiskos'u internet üzerinden kullanmak — ileri düzey rehber</title>
+<meta name="description" content="Fiskos birlikte olan insanlar için tasarlandı. Uzaktaki biriyle kullanmak istersen, telefonlarını ücretsiz bir sanal-LAN aracıyla (ZeroTier) köprüleyip aynı ağdaymış gibi davranmalarını sağlayabilirsin. İleri düzey, isteğe bağlı — Fiskos sunucusuz kalır.">
+<meta name="robots" content="index,follow">
+<link rel="icon" href="icon.png">
+<link rel="alternate" hreflang="en" href="https://alisarac.github.io/fiskos-site/internet-guide.html">
+<link rel="alternate" hreflang="tr" href="https://alisarac.github.io/fiskos-site/internet-guide-tr.html">
+<link rel="alternate" hreflang="x-default" href="https://alisarac.github.io/fiskos-site/internet-guide.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF6EE; --surface:#FFFFFF; --sand:#F1E9DB; --text:#4A4036; --muted:#7A7268;
+    --accent:#D9663A; --accent2:#E8915A; --line:rgba(58,46,30,.10);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--text);
+    font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif; line-height:1.6}
+  .wrap{max-width:760px; margin:0 auto; padding:0 22px}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .top{padding:26px 0 6px; font-size:14px; display:flex; justify-content:space-between}
+  header.hero{text-align:center; padding:26px 22px 8px}
+  header .kicker{display:inline-block; background:var(--sand); color:var(--text); font-weight:700;
+    font-size:12px; letter-spacing:.4px; text-transform:uppercase; padding:5px 11px; border-radius:999px}
+  header h1{font-family:'Fraunces',serif; font-weight:700; font-size:38px; line-height:1.1; margin:16px 0 8px}
+  header p.lede{font-size:18px; color:var(--muted); margin:0 auto; max-width:620px}
+
+  .note{border-radius:16px; padding:16px 18px; margin:20px 0; font-size:15px}
+  .note.info{background:var(--sand); border:1px solid var(--line)}
+  .note.warn{background:#fff4ec; border:1px solid rgba(217,102,58,.30)}
+  .note b{color:var(--text)}
+
+  h2{font-family:'Fraunces',serif; font-weight:600; font-size:24px; margin:34px 0 6px}
+  p{margin:8px 0}
+
+  ol.steps{list-style:none; counter-reset:s; padding:0; margin:18px 0}
+  ol.steps>li{position:relative; background:var(--surface); border:1px solid var(--line);
+    border-radius:16px; padding:16px 18px 16px 58px; margin:12px 0}
+  ol.steps>li::before{counter-increment:s; content:counter(s); position:absolute; left:16px; top:16px;
+    width:28px; height:28px; border-radius:50%; background:var(--accent); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px}
+  ol.steps>li b{color:var(--text)}
+  code{background:var(--sand); border:1px solid var(--line); border-radius:6px; padding:1px 6px;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:.92em}
+
+  ul.tidy{margin:8px 0; padding-left:20px}
+  ul.tidy li{margin:5px 0}
+
+  footer{border-top:1px solid var(--line); margin-top:44px; padding:26px 0 60px; text-align:center; color:var(--muted); font-size:14px}
+  footer .links a{margin:0 8px}
+
+  @media (max-width:720px){ header h1{font-size:30px} }
+</style>
+</head>
+<body>
+
+  <div class="wrap">
+
+    <div class="top"><a href="./tr.html">← Fiskos'a dön</a><span><a href="internet-guide.html">EN</a> · <b style="color:var(--accent)">TR</b></span></div>
+
+    <header class="hero">
+      <span class="kicker">İleri düzey · İsteğe bağlı</span>
+      <h1>Fiskos'u internet üzerinden kullanmak</h1>
+      <p class="lede">Fiskos, <em>birlikte</em> olan insanlar içindir. Ama uzaktaki biriyle kullanmak istersen, telefonlarını köprüleyip aynı Wi-Fi'deymiş gibi davranmalarını sağlayabilirsin.</p>
+    </header>
+
+    <div class="note info">
+      <b>Önce dürüst kısım.</b> Fiskos'un sunucusu yok — telefonları aynı yerel ağda doğrudan bağlar.
+      Olayın tamamı bu, ve seni özel tutan da bu. Bu rehber onu değiştirmiyor. Bunun yerine, internetteki
+      iki telefonu tek bir ağdaymış gibi gösteren ücretsiz bir <b>sanal LAN</b> (<b>ZeroTier</b> adlı bir
+      araç) kuruyorsun. Fiskos o ağ üzerinden tıpkı evdeymiş gibi çalışır. Sanal ağı <i>sen</i>
+      çalıştırırsın — Fiskos yine verini asla görmez.
+    </div>
+
+    <h2>Neye ihtiyacın var</h2>
+    <ul class="tidy">
+      <li>Fiskos kurulu iki Android telefon.</li>
+      <li>Ücretsiz bir <a href="https://www.zerotier.com/" target="_blank" rel="noopener">ZeroTier</a> hesabı (biri ağı kurar, diğeri sadece katılır).</li>
+      <li>İki telefonda da ZeroTier uygulaması.</li>
+      <li>Bir kereliğine ~10 dakika.</li>
+    </ul>
+
+    <h2>Neden ZeroTier</h2>
+    <p>İnsanların eskiden LAN oyunlarını internet üzerinden oynamak için kullandığı “sanal LAN”
+      araçlarının modern hâli. İki kişi tek bir <b>ağa</b> (bir ID ile) katılır, ağın sahibi her cihazı
+      onaylar, herkes ortak bir sanal ağda özel bir adres alır (<code>10.147.20.5</code> gibi) —
+      paylaşılan hesap gerekmez ve Fiskos'a normal bir ev ağı gibi görünür.</p>
+
+    <h2>Kurulum</h2>
+    <ol class="steps">
+      <li><b>Ağ oluştur.</b> Biriniz <a href="https://my.zerotier.com/" target="_blank" rel="noopener">my.zerotier.com</a>'da oturum açar, <b>Create A Network</b>'e tıklar ve 16 haneli <b>Network ID</b>'sini kopyalar. O ID'yi diğer kişiyle paylaş.</li>
+      <li><b>ZeroTier kur &amp; katıl.</b> İki telefon da <b>ZeroTier</b> uygulamasını (Google Play) kurar, <b>＋</b>'ya dokunur, Network ID'yi yapıştırır ve katılır. İstediği VPN iznini ver.</li>
+      <li><b>İki telefonu da onayla.</b> <a href="https://my.zerotier.com/" target="_blank" rel="noopener">my.zerotier.com</a>'a dön, ağı aç ve her cihazın yanındaki <b>Auth?</b> kutusunu işaretle.</li>
+      <li><b>Bağlantıyı kontrol et.</b> Her telefonda ZeroTier uygulaması artık bir <b>Managed IP</b> göstermeli (<code>10.147.20.x</code> gibi). Bu, iki telefonun artık internet üzerinden birbirine ulaşabildiği anlamına gelir.</li>
+      <li><b>Fiskos'a overlay adresini söyle.</b> <b>Her</b> telefonda Fiskos → <b>Ayarlar → Gelişmiş → VPN üzerinden bağlan</b>'ı aç ve o telefonun <b>kendi</b> ZeroTier Managed IP'sini (üstteki adımdan, örn. <code>10.147.20.5</code>) gir. Kaydet — artık <b>Açık</b> göstermeli.</li>
+      <li><b>Fiskos'ta eşleş.</b> Şimdi normal eşleştiğin gibi eşleş — bir telefon QR'ını gösterir, diğeri tarar, güvenlik emojisini onaylarsın.</li>
+      <li><b>Bağlandın.</b> Hepsi bu. Fiskos ZeroTier adresini hatırlar ve bundan sonra, ağ değiştirsen bile otomatik olarak onun üzerinden yeniden bağlanır.</li>
+    </ol>
+
+    <div class="note warn">
+      <b>Bağlanmıyor mu?</b> Şunları kontrol et:
+      <ul class="tidy">
+        <li>İki cihaz da ZeroTier konsolunda/uygulamasında <b>Auth ✓</b> ve bir Managed IP gösteriyor mu?</li>
+        <li>ZeroTier iki telefonda da gerçekten çalışıyor mu (VPN anahtar simgesi açık)?</li>
+        <li>Fiskos → Ayarlar → Gelişmiş → VPN üzerinden bağlan'da her telefon <b>Açık</b> gösteriyor ve <em>kendi</em> (diğerinin değil) ZeroTier IP'si girili mi?</li>
+        <li>Hâlâ takılıysan: Fiskos'ta birbirinizi kaldırın ve overlay adresi ikisinde de ayarlıyken yeniden eşleşin.</li>
+      </ul>
+    </div>
+
+    <h2>Bilmekte fayda var</h2>
+    <ul class="tidy">
+      <li><b>Bu internet ister</b> — tabii ki. Fiskos'un asıl sihri <i>hiç</i> internet olmadan çalışmasıdır; bu, uzaktaki biriyle iletişimde kalmak için bir bonus.</li>
+      <li><b>Yine uçtan uca şifreli.</b> ZeroTier yalnızca (zaten şifreli) trafiği telefonların arasında taşır. Ne ZeroTier ne Fiskos mesajlarını okuyabilir.</li>
+      <li><b>Bu senin ağın.</b> ZeroTier ağını sen çalıştırırsın; istediğin zaman cihazları kaldırabilirsin. Fiskos sunucusuz kalır.</li>
+      <li><b>Pil:</b> Arka planda bir VPN ve Fiskos'u açık tutmak biraz daha fazla güç kullanır. Uzak bağlantıya ihtiyacın olmadığında ZeroTier'ı kapat.</li>
+    </ul>
+
+  </div>
+
+  <footer>
+    <div class="links">
+      <a href="./tr.html">Ana Sayfa</a> ·
+      <a href="https://alisarac.github.io/fiskos-legal/">Gizlilik Politikası</a> ·
+      <a href="mailto:alisarac@gmail.com">İletişim</a>
+    </div>
+    © 2026 Fiskos · Sunucu yok · Hesap yok · Takip yok
+  </footer>
+
+</body>
+</html>
