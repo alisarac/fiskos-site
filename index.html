@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fiskos — a private, offline-first space for your people</title>
-<meta name="description" content="Chat, share photos and files, plan together and split expenses — with your people. Works with zero internet or signal. No account, no servers, end-to-end encrypted.">
-<meta property="og:title" content="Fiskos — chat & share with your people, offline">
+<meta name="description" content="Chat, call, share photos and files, plan together, split expenses and even play games — with your people. Works with zero internet or signal. No account, no servers, end-to-end encrypted.">
+<meta property="og:title" content="Fiskos — chat, share & play with your people, offline">
 <meta property="og:description" content="Works with zero internet or signal. No account, no servers, end-to-end encrypted.">
 <meta property="og:image" content="og.png">
 <meta property="og:type" content="website">
@@ -16,7 +16,7 @@
 <style>
   :root{
     --bg:#FBF6EE; --surface:#FFFFFF; --sand:#F1E9DB; --text:#4A4036; --muted:#7A7268;
-    --accent:#D9663A; --accent2:#E8915A; --line:rgba(58,46,30,.10);
+    --accent:#D9663A; --accent2:#E8915A; --line:rgba(58,46,30,.10); --success:#2F9E6B;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -27,11 +27,11 @@
   a:hover{text-decoration:underline}
 
   /* hero */
-  .hero{text-align:center; padding:72px 22px 36px}
+  .hero{text-align:center; padding:72px 22px 30px}
   .hero img.icon{width:96px; height:96px; border-radius:24px; box-shadow:0 6px 24px rgba(58,46,30,.16)}
   .hero h1{font-family:'Fraunces',serif; font-weight:700; font-size:54px; line-height:1.05; margin:22px 0 6px}
   .hero .tag{font-size:21px; color:var(--text); margin:0 auto; max-width:620px}
-  .hero .sub{font-size:16px; color:var(--muted); margin:14px auto 0; max-width:560px}
+  .hero .sub{font-size:16px; color:var(--muted); margin:14px auto 0; max-width:600px}
   .badges{display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:26px}
   .btn{display:inline-flex; align-items:center; gap:9px; background:var(--accent); color:#fff;
     padding:13px 20px; border-radius:14px; font-weight:700; font-size:15px}
@@ -42,16 +42,27 @@
   .wedge{background:linear-gradient(120deg,var(--accent),var(--accent2)); color:#fff;
     border-radius:22px; padding:34px 28px; margin:30px 0; text-align:center}
   .wedge h2{font-family:'Fraunces',serif; font-weight:700; font-size:30px; margin:0 0 8px}
-  .wedge p{font-size:17px; margin:0 auto; max-width:640px; opacity:.96}
+  .wedge p{font-size:17px; margin:0 auto; max-width:660px; opacity:.96}
 
-  /* features */
+  /* sections + feature grid */
   section.block{padding:30px 0}
-  h2.section{font-family:'Fraunces',serif; font-weight:600; font-size:28px; text-align:center; margin:8px 0 22px}
+  h2.section{font-family:'Fraunces',serif; font-weight:600; font-size:28px; text-align:center; margin:8px 0 6px}
+  p.section-sub{text-align:center; color:var(--muted); margin:0 auto 22px; max-width:620px}
   .grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
   .card{background:var(--surface); border:1px solid var(--line); border-radius:18px; padding:20px}
   .card .emoji{font-size:26px}
   .card h3{font-family:'Fraunces',serif; font-weight:600; font-size:18px; margin:10px 0 5px}
   .card p{margin:0; color:var(--muted); font-size:15px}
+
+  /* privacy band */
+  .privacy{background:var(--text); color:#F3ECE1; border-radius:22px; padding:30px 28px; margin:12px 0}
+  .privacy h2{font-family:'Fraunces',serif; font-weight:700; font-size:26px; margin:0 0 6px; color:#fff; text-align:center}
+  .privacy .lead{text-align:center; color:#D8CDBD; margin:0 auto 20px; max-width:600px}
+  .plist{display:grid; grid-template-columns:repeat(2,1fr); gap:12px 24px}
+  .pitem{display:flex; gap:11px; align-items:flex-start}
+  .pitem .dot{color:var(--accent2); font-weight:800; line-height:1.5}
+  .pitem b{color:#fff}
+  .pitem span{color:#D8CDBD; font-size:14.5px}
 
   /* how it works */
   .how{background:var(--surface); border:1px solid var(--line); border-radius:22px; padding:28px}
@@ -62,13 +73,27 @@
   .step p{margin:0; font-size:15px; color:var(--text)}
   .step b{color:var(--text)}
 
+  /* made-for chips */
+  .chips{display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:6px}
+  .chip{background:var(--surface); border:1px solid var(--line); border-radius:999px;
+    padding:9px 15px; font-size:14.5px; font-weight:600}
+  .chip small{color:var(--muted); font-weight:400}
+
+  /* pro */
+  .pro{display:flex; gap:16px; align-items:flex-start; background:var(--sand);
+    border:1px solid var(--line); border-radius:22px; padding:26px 26px}
+  .pro .badge{font-size:30px}
+  .pro h3{font-family:'Fraunces',serif; font-weight:700; font-size:22px; margin:0 0 6px}
+  .pro p{margin:0; color:var(--muted); font-size:15.5px}
+
   footer{border-top:1px solid var(--line); margin-top:40px; padding:28px 0 60px; text-align:center; color:var(--muted); font-size:14px}
   footer .links{margin-bottom:8px}
   footer .links a{margin:0 8px}
 
   @media (max-width:720px){
     .hero h1{font-size:42px}
-    .grid,.steps{grid-template-columns:1fr}
+    .grid,.steps,.plist{grid-template-columns:1fr}
+    .pro{flex-direction:column}
   }
 </style>
 </head>
@@ -78,9 +103,9 @@
     <img class="icon" src="icon.png" alt="Fiskos">
     <h1>Fiskos</h1>
     <p class="tag">A private, offline-first space for your people.</p>
-    <p class="sub">Chat, share photos &amp; files, make plans, split expenses, and call each other — even with <strong>zero internet or signal</strong>. No account. No servers. End-to-end encrypted.</p>
+    <p class="sub">Chat, call, share photos &amp; files, make plans, split expenses — and even play games together — <strong>even with zero internet or signal</strong>. No account. No servers. End-to-end encrypted.</p>
     <div class="badges">
-      <span class="btn">Coming soon to Google Play</span>
+      <a class="btn" href="https://play.google.com/store/apps/details?id=com.alisrc.fiskos" target="_blank" rel="noopener">▶ Get it on Google Play</a>
       <a class="btn soft" href="#how">How the offline part works ↓</a>
     </div>
   </header>
@@ -89,18 +114,34 @@
 
     <div class="wedge">
       <h2>No Wi-Fi? No signal? It still works.</h2>
-      <p>Underground gym, a plane, a campsite, a power cut, a country with no roaming — Fiskos connects your phones <strong>directly</strong> over your local network or a hotspot, so you stay together when everything else needs the internet and doesn't have it.</p>
+      <p>Underground gym, a plane, a campsite, a power cut, a country with no roaming — Fiskos connects your phones <strong>directly</strong> over your local network, a hotspot, or even phone-to-phone with Wi-Fi Direct (no router at all). You stay together when everything else needs the internet and doesn't have it.</p>
     </div>
 
     <section class="block">
       <h2 class="section">Everything in one private space</h2>
+      <p class="section-sub">A calm home for the people closest to you — not a noisy feed, no strangers, no ads.</p>
       <div class="grid">
-        <div class="card"><div class="emoji">💬</div><h3>Chat &amp; calls</h3><p>1:1 and group messages, voice messages, and voice/video calls — direct, encrypted, no phone number.</p></div>
-        <div class="card"><div class="emoji">📷</div><h3>Share anything</h3><p>Photos, videos, files and voice notes fly between phones over the local network — fast, no upload to anyone's cloud.</p></div>
-        <div class="card"><div class="emoji">🗓️</div><h3>Plan together</h3><p>A shared calendar with RSVPs and reminders, plus shared notes and checklists for trips and to-dos.</p></div>
-        <div class="card"><div class="emoji">🧾</div><h3>Split expenses</h3><p>Track who paid, split fairly (even just some people), in any currency — perfect for trips and roommates.</p></div>
-        <div class="card"><div class="emoji">📍</div><h3>Find each other</h3><p>Share live location and a "find each other" radar with the people you choose — sent only to them.</p></div>
-        <div class="card"><div class="emoji">🔒</div><h3>Private by design</h3><p>No account, no tracking, no servers. Everything is end-to-end encrypted and stored only on your devices.</p></div>
+        <div class="card"><div class="emoji">💬</div><h3>Chat &amp; calls</h3><p>1:1 and group chats with reactions, replies and voice messages — plus voice &amp; video calls. No phone number needed.</p></div>
+        <div class="card"><div class="emoji">📷</div><h3>Share anything</h3><p>Photos, videos, files and voice notes fly between phones over the local network — fast, and never uploaded to anyone's cloud.</p></div>
+        <div class="card"><div class="emoji">🗓️</div><h3>Plan together</h3><p>A shared calendar with RSVPs, reminders and an “Upcoming” agenda, plus shared notes and checklists for trips and to-dos.</p></div>
+        <div class="card"><div class="emoji">🧾</div><h3>Split expenses</h3><p>Track who paid and split fairly — even just some people — in any currency. Perfect for trips and roommates.</p></div>
+        <div class="card"><div class="emoji">📍</div><h3>Find each other</h3><p>Share live location and a “find each other” radar with the people you choose — sent only to them.</p></div>
+        <div class="card"><div class="emoji">🎲</div><h3>Play together</h3><p>Backgammon (Tavla), Chess and Ludo — play head-to-head on your two phones, fully offline.</p></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="privacy">
+        <h2>Private by design — not by promise</h2>
+        <p class="lead">Most apps ask you to trust their servers. Fiskos doesn't have any. Privacy isn't a setting here; it's how it's built.</p>
+        <div class="plist">
+          <div class="pitem"><span class="dot">◆</span><span><b>No servers, no account.</b> No phone number, no sign-up, no tracking. Your data lives only on your devices.</span></div>
+          <div class="pitem"><span class="dot">◆</span><span><b>End-to-end encrypted.</b> Only you and the people you pair with can read your messages — no one in the middle, not even us.</span></div>
+          <div class="pitem"><span class="dot">◆</span><span><b>Encrypted on your phone.</b> Everything is encrypted at rest with a key kept in your phone's secure hardware.</span></div>
+          <div class="pitem"><span class="dot">◆</span><span><b>App lock.</b> Require a fingerprint, face or PIN to open Fiskos.</span></div>
+          <div class="pitem"><span class="dot">◆</span><span><b>Disappearing messages.</b> Set any chat to auto-delete after an hour, a day or a week.</span></div>
+          <div class="pitem"><span class="dot">◆</span><span><b>Panic wipe &amp; verified contacts.</b> Erase everything instantly if you need to, and verify a contact's safety number so no one can impersonate them.</span></div>
+        </div>
       </div>
     </section>
 
@@ -108,9 +149,42 @@
       <div class="how">
         <h2>How the no-internet part works</h2>
         <div class="steps">
-          <div class="step"><div class="n">1</div><p><b>Pair once.</b> Scan a QR code or tap phones together and confirm a safety emoji. Done — you're connected.</p></div>
-          <div class="step"><div class="n">2</div><p><b>Connect directly.</b> On the same Wi-Fi or a hotspot, your phones find each other and talk peer-to-peer — no server in the middle.</p></div>
-          <div class="step"><div class="n">3</div><p><b>Stay in sync.</b> Messages and shared plans merge automatically when you reconnect, so nothing is lost offline.</p></div>
+          <div class="step"><div class="n">1</div><p><b>Pair once.</b> Scan a QR code and confirm a safety emoji — even fully off-grid over Wi-Fi Direct. Done, you're connected.</p></div>
+          <div class="step"><div class="n">2</div><p><b>Connect directly.</b> On the same Wi-Fi, a hotspot, or phone-to-phone, your phones find each other and talk peer-to-peer — no server in the middle.</p></div>
+          <div class="step"><div class="n">3</div><p><b>Stay in sync.</b> Messages and shared plans merge automatically when you reconnect, so nothing is lost while you're offline.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="section">Made for being together</h2>
+      <p class="section-sub">Anywhere a few people are in one place and the signal isn't.</p>
+      <div class="chips">
+        <span class="chip">💪 Gym crews</span>
+        <span class="chip">✈️ Travel &amp; no-roaming trips</span>
+        <span class="chip">🏕️ Camping &amp; festivals</span>
+        <span class="chip">❤️ Couples</span>
+        <span class="chip">👨‍👩‍👧 Family &amp; roommates</span>
+        <span class="chip">💼 Small teams &amp; pop-ups</span>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2 class="section">Never lose your space</h2>
+      <p class="section-sub">Moving phones or worried about losing everything? You're covered — without a cloud.</p>
+      <div class="grid">
+        <div class="card"><div class="emoji">🔄</div><h3>Move to a new phone</h3><p>Send your whole Fiskos — identity, chats, files and pairings — straight to your new phone over the same encrypted link your chats use.</p></div>
+        <div class="card"><div class="emoji">🛡️</div><h3>Encrypted backup</h3><p>Save an encrypted backup file, protected by a 12-word recovery phrase. It never touches the cloud — restore it on a lost or broken phone.</p></div>
+        <div class="card"><div class="emoji">🤝</div><h3>Bring your people</h3><p>Fiskos needs someone nearby, so it's easy to invite a friend with a link or QR — set everyone up before you head somewhere with no signal.</p></div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="pro">
+        <div class="badge">⭐</div>
+        <div>
+          <h3>Free to use — with an optional Fiskos Pro</h3>
+          <p>Everything above is free. A one-time <b>Fiskos Pro</b> unlocks large-file &amp; full-length video sharing and a supporter badge — and because it sponsors your circle, <b>one of you buys it and everyone you pair with gets it too</b>. No subscription, no ads, ever. It just keeps an indie, privacy-first app independent.</p>
         </div>
       </div>
     </section>
@@ -119,6 +193,7 @@
 
   <footer>
     <div class="links">
+      <a href="https://play.google.com/store/apps/details?id=com.alisrc.fiskos" target="_blank" rel="noopener">Google Play</a> ·
       <a href="https://alisarac.github.io/fiskos-legal/">Privacy Policy</a> ·
       <a href="mailto:alisarac@gmail.com">Contact</a>
     </div>
